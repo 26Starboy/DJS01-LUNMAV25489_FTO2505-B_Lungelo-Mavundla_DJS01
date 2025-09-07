@@ -1,70 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"> <!-- Root HTML element, language set to English -->
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PodcastApp</title>
+  <meta charset="utf-8" /> <!-- Sets character encoding to UTF-8 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" /> <!-- Ensures responsive design for mobile devices -->
+  <title>PodcastApp</title> <!-- Title of the webpage shown in the browser tab -->
 
   <!-- Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> 
+  <!-- Links Font Awesome icons library for using icons like podcast, search, close -->
 
   <!-- Styles -->
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css" /> <!-- Links the external CSS stylesheet for styling -->
 </head>
 <body>
-  <header class="topbar">
-    <div class="topbar-inner container-wide">
-      <div class="brand">
-        <i class="fas fa-podcast"></i>
-        <span class="brand-text">PodcastApp</span>
+  <header class="topbar"> <!-- Top navigation bar / header of the page -->
+    <div class="topbar-inner container-wide"> <!-- Inner wrapper for layout alignment -->
+      <div class="brand"> <!-- Brand/logo container -->
+        <i class="fas fa-podcast"></i> <!-- Font Awesome podcast icon -->
+        <span class="brand-text">PodcastApp</span> <!-- Brand text next to the icon -->
       </div>
 
-      <div class="topbar-actions">
-        <button class="icon-btn" aria-label="Search"><i class="fas fa-search"></i></button>
-        <button class="icon-btn" aria-label="Profile"><img src="https://i.pravatar.cc/32?img=12" alt="profile" class="avatar"></button>
+      <div class="topbar-actions"> <!-- Container for action buttons like search and profile -->
+        <button class="icon-btn" aria-label="Search">
+          <i class="fas fa-search"></i> <!-- Search icon -->
+        </button>
+        <button class="icon-btn" aria-label="Profile">
+          <img src="https://i.pravatar.cc/32?img=12" alt="profile" class="avatar"> <!-- Profile avatar image -->
+        </button>
       </div>
     </div>
   </header>
 
-  <main class="container-wide">
-    <section class="controls-row">
-      <div class="filters">
-        <div class="filter-label">Filter by:</div>
-        <div class="filter-pill">
+  <main class="container-wide"> <!-- Main content area -->
+    <section class="controls-row"> <!-- Section for filter and sort controls -->
+      <div class="filters"> <!-- Container for filtering options -->
+        <div class="filter-label">Filter by:</div> <!-- Text label for filters -->
+        <div class="filter-pill"> <!-- Wrapper for a filter dropdown -->
           <select id="genreFilter" class="filter-select" aria-label="Filter by genre">
-            <option value="all">All Genres</option>
+            <option value="all">All Genres</option> <!-- Default option to show all genres -->
           </select>
         </div>
 
-        <div class="filter-pill">
+        <div class="filter-pill"> <!-- Wrapper for sort dropdown -->
           <select id="sortFilter" class="filter-select" aria-label="Sort podcasts">
-            <option value="updated">Recently Updated</option>
-            <option value="title">Title</option>
-            <option value="seasons">Number of Seasons</option>
+            <option value="updated">Recently Updated</option> <!-- Default sort option -->
+            <option value="title">Title</option> <!-- Sort by podcast title -->
+            <option value="seasons">Number of Seasons</option> <!-- Sort by number of seasons -->
           </select>
         </div>
       </div>
     </section>
 
-    <section class="podcasts-area">
+    <section class="podcasts-area"> <!-- Section to display podcast cards -->
       <div class="podcasts-grid" id="podcastsGrid" aria-live="polite">
-        <!-- Cards injected here -->
+        <!-- Podcast cards will be dynamically injected here via JavaScript -->
       </div>
     </section>
   </main>
 
-  <!-- Modal -->
+  <!-- Modal for detailed podcast info -->
   <div class="modal-overlay" id="modalOverlay" aria-hidden="true" role="dialog" aria-modal="true">
-    <div class="modal" role="document">
+    <div class="modal" role="document"> <!-- Actual modal content container -->
       <button class="modal-close" id="modalClose" type="button" title="Close modal" aria-label="Close modal">
-        <i class="fas fa-times"></i>
+        <i class="fas fa-times"></i> <!-- Close (X) icon -->
       </button>
-      <div class="modal-content" id="modalContent"></div>
+      <div class="modal-content" id="modalContent"><!-- Dynamic content of the modal goes here --></div>
     </div>
   </div>
 
   <!-- Data and App -->
-  <script src="data.js"></script>
-  <script src="app.js"></script>
+  <script src="data.js"></script> <!-- JavaScript file containing podcast data -->
+  <script src="app.js"></script> <!-- Main JavaScript file controlling app behavior -->
 </body>
 </html>
