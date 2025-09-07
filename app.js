@@ -3,16 +3,17 @@
  */
 class PodcastApp {
   /**
-   * @param {Array} podcasts
-   * @param {Array} genres
-   * @param {Array} seasons
+   * Constructor is called when we create a new PodcastApp.
+   * It receives 3 arrays: podcasts, genres, seasons.
    */
   constructor(podcasts, genres, seasons) {
+    // Save input data into properties of the class
     this.podcasts = podcasts;
     this.genres = genres;
     this.seasons = seasons;
 
-    // DOM
+    // ====== DOM Elements ======
+    // Get references to important HTML elements we will update
     this.podcastsGrid = document.getElementById('podcastsGrid');
     this.modalOverlay = document.getElementById('modalOverlay');
     this.modalContent = document.getElementById('modalContent');
@@ -20,37 +21,38 @@ class PodcastApp {
     this.genreFilter = document.getElementById('genreFilter');
     this.sortFilter = document.getElementById('sortFilter');
 
-    // Bound methods
+    // ====== Method Bindings ======
+    // Bind methods so "this" always refers to the class instance
     this.init = this.init.bind(this);
     this.renderPodcasts = this.renderPodcasts.bind(this);
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.filterAndSortPodcasts = this.filterAndSortPodcasts.bind(this);
 
-    // Wait for DOM
+    // Run init once the DOM is ready
     document.addEventListener('DOMContentLoaded', this.init);
   }
 
   /**
-   * Convert ISO date to readable string
-   * @param {string} dateString
-   * @returns {string}
+   * Convert ISO date string to a human-friendly string
+   * Example: "2025-09-08" → "Yesterday" or "3 weeks ago"
    */
   formatDate(dateString) {
-    const date = new Date(dateString);
-    const now = new Date();
-    const diff = Math.abs(now - date);
-    const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+    const date = new Date(dateString);     // convert string to Date
+    const now = new Date();                // current date
+    const diff = Math.abs(now - date);     // difference in ms
+    const days = Math.ceil(diff / (1000 * 60 * 60 * 24)); // convert ms → days
+
+    // Return relative string depending on how many days passed
     if (days === 1) return 'Yesterday';
     if (days < 7) return `${days} days ago`;
     if (days < 30) return `${Math.ceil(days / 7)} weeks ago`;
-    return date.toLocaleDateString();
+    return date.toLocaleDateString();      // fallback to standard date
   }
 
   /**
-   * Map genre ids to names
-   * @param {number[]} genreIds
-   * @returns {string[]}
+   * Convert an array of genre IDs into genre names
+   * Example: [1, 3] → ["True Crime", "History"]
    */
   getGenreNames(genreIds) {
     return genreIds.map(id => {
@@ -60,19 +62,23 @@ class PodcastApp {
   }
 
   /**
-   * Render the podcast cards
-   * @param {Array} list
+   * Render podcast cards into the grid
+   * @param {Array} list - podcasts to show
    */
   renderPodcasts(list) {
-    this.podcastsGrid.innerHTML = '';
-    list.forEach(podcast => {
-      const genres = this.getGenreNames(podcast.genres);
-      const updated = this.formatDate(podcast.updated);
+    this.podcastsGrid.innerHTML = ''; // clear grid before rendering
 
+    list.forEach(podcast => {
+      const genres = this.getGenreNames(podcast.genres); // map genre IDs → names
+      const updated = this.formatDate(podcast.updated);  // format last updated
+
+      // Create card container
       const card = document.createElement('article');
       card.className = 'podcast-card';
-      card.tabIndex = 0;
-      card.setAttribute('role', 'button');
+      card.tabIndex = 0; // make focusable
+      card.setAttribute('role', 'button'); // treat card like a button
+
+      // Fill card HTML
       card.innerHTML = `
         <div class="card-image">
           <img src="${podcast.image}" alt="${podcast.title} cover image">
@@ -90,23 +96,24 @@ class PodcastApp {
         </div>
       `;
 
-      // open modal on click or enter
+      // Open modal when user clicks or presses Enter
       card.addEventListener('click', () => this.openModal(podcast));
       card.addEventListener('keydown', (e) => { if (e.key === 'Enter') this.openModal(podcast); });
 
+      // Add card to the grid
       this.podcastsGrid.appendChild(card);
     });
   }
 
   /**
-   * Open modal populated with podcast data
-   * @param {Object} podcast
+   * Open modal showing podcast details
    */
   openModal(podcast) {
-    const genres = this.getGenreNames(podcast.genres);
-    const updated = this.formatDate(podcast.updated);
+    const genres = this.getGenreNames(podcast.genres);       // genre names
+    const updated = this.formatDate(podcast.updated);        // last updated
     const podcastSeasons = (this.seasons.find(s => s.id === podcast.id) || {}).seasonDetails || [];
 
+    // Build modal HTML
     this.modalContent.innerHTML = `
       <div class="modal-header">
         <div class="modal-image"><img src="${podcast.image}" alt="${podcast.title} cover"></div>
@@ -129,9 +136,10 @@ class PodcastApp {
       </div>
     `;
 
+    // Show modal
     this.modalOverlay.classList.add('active');
     this.modalOverlay.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden'; // prevent scrolling background
   }
 
   /**
@@ -140,23 +148,25 @@ class PodcastApp {
   closeModal() {
     this.modalOverlay.classList.remove('active');
     this.modalOverlay.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
+    document.body.style.overflow = ''; // restore scroll
   }
 
   /**
-   * Apply filtering and sorting
+   * Filter and sort the podcast list based on dropdowns
    */
   filterAndSortPodcasts() {
-    const genreValue = this.genreFilter.value;
-    const sortValue = this.sortFilter.value;
+    const genreValue = this.genreFilter.value; // selected genre
+    const sortValue = this.sortFilter.value;   // selected sort option
 
-    let list = [...this.podcasts];
+    let list = [...this.podcasts]; // copy of all podcasts
 
+    // Apply genre filter
     if (genreValue !== 'all') {
       const id = parseInt(genreValue, 10);
       list = list.filter(p => p.genres.includes(id));
     }
 
+    // Apply sorting
     switch (sortValue) {
       case 'title':
         list.sort((a,b) => a.title.localeCompare(b.title));
@@ -170,14 +180,18 @@ class PodcastApp {
         break;
     }
 
+    // Re-render grid
     this.renderPodcasts(list);
   }
 
   /**
-   * Initialize UI, populate filters, attach listeners
+   * Initialize the app:
+   * - Populate genre dropdown
+   * - Render initial podcasts
+   * - Attach event listeners
    */
   init() {
-    // populate genre filter
+    // Populate genre filter with <option> elements
     this.genres.forEach(g => {
       const opt = document.createElement('option');
       opt.value = g.id;
@@ -185,22 +199,24 @@ class PodcastApp {
       this.genreFilter.appendChild(opt);
     });
 
-    // initial render
+    // Render all podcasts initially
     this.renderPodcasts(this.podcasts);
 
-    // listeners
+    // Event listeners
     this.modalClose.addEventListener('click', this.closeModal.bind(this));
-    this.modalOverlay.addEventListener('click', (e) => { if (e.target === this.modalOverlay) this.closeModal(); });
+    this.modalOverlay.addEventListener('click', (e) => { 
+      if (e.target === this.modalOverlay) this.closeModal(); // close if background clicked
+    });
 
     this.genreFilter.addEventListener('change', this.filterAndSortPodcasts.bind(this));
     this.sortFilter.addEventListener('change', this.filterAndSortPodcasts.bind(this));
 
-    // keyboard support
+    // Keyboard accessibility: Esc closes modal
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && this.modalOverlay.classList.contains('active')) this.closeModal();
     });
   }
 }
 
-// Initialize the app (relies on globals from data.js)
+// Create and run the app using data from data.js
 new PodcastApp(podcasts, genres, seasons);
