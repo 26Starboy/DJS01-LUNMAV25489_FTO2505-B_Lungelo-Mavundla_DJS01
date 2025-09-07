@@ -298,3 +298,56 @@ header {
 .season-item:hover {
     background-color: rgba(140, 84, 255, 0.05);
 }
+
+.season-name {
+    font-weight: 500;
+}
+
+.episode-count {
+    color: var(--secondary-color);
+    font-size: 0.9rem;
+}
+
+/* Filters */
+.filters {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.filter-label {
+    font-weight: 600;
+    color: var(--secondary-color);
+}
+
+.filter-select {
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
+    background-color: var(--card-background);
+    color: var(--text-color);
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+    .podcasts-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .podcasts-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
