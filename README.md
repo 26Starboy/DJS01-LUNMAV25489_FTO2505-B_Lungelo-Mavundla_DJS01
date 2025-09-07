@@ -1,69 +1,111 @@
-# DJS01: Vanilla JS Podcast App
+# 🎧 Podcast Explorer
 
-## Overview
-
-You will design and build a responsive web application that allows users to **browse podcast shows** on a landing page and **view detailed information** in a modal. The application should display clear, concise previews of podcast shows and offer additional information through a modal pop-up, **all without navigating away from the page**. Your app should showcase clean code architecture and strong UI/UX design while following JavaScript best practices.
+Podcast Explorer is a **responsive, accessible, and interactive web app** that allows users to **discover and explore podcasts** with ease.  
+It was built with **vanilla HTML, CSS, and JavaScript**, and emphasizes **clean code structure**, **usability**, and **a polished user interface**.
 
 ---
 
-## Core Objectives
+## 🌍 Overview
 
-### 1. Landing Page – Podcast Previews
+The goal of this project is to create a **modern podcast browsing experience** that mimics how streaming platforms display content.  
+It allows users to quickly scan through available podcasts, dive into details, and interact with the dataset in meaningful ways.
 
-- Display a list of podcast shows on the landing page.
-- Each podcast preview must include:
-  - Cover image
-  - Show title
-  - Number of seasons
-  - Genre names
-  - Last updated date (in a human-readable format)
+Key highlights:
 
-### 2. Modal View – Show Details
-
-- When a user clicks on a podcast preview, open a modal.
-- The modal should include:
-  - Larger cover image
-  - Podcast title
-  - Description of the show
+- Podcasts are presented in **visually appealing cards** that show essential info at a glance (cover art, title, number of seasons, last updated).
+- A **filter and sort system** allows users to refine results:
+  - By **genre** (e.g., Comedy, History, True Crime).
+  - By **sorting rules** (alphabetical, season count, most recent updates).
+- A **dynamic modal view** provides deep insights:
+  - Full podcast description
   - Genre tags
-  - Last updated date (readable format)
-  - List of season titles
-  - Number of episodes in each season
-- Include a clear and accessible way to **close the modal**.
+  - Last updated date
+  - Season and episode breakdown
+- The design is **responsive** — adapting seamlessly to desktop, tablet, and mobile layouts.
+- Accessibility is a core focus:
+  - Keyboard navigation
+  - Screen reader-friendly labels
+  - ARIA attributes for modal dialogs
 
-### 3. Code Architecture & Best Practices
-
-- Use **object-oriented programming (OOP)** where appropriate.
-- Apply **functional programming principles** to ensure modularity and predictability.
-- Follow **SOLID design principles** for clean, maintainable code.
-- Abstract repeated logic into **reusable functions or classes**.
-- Add **JSDoc comments** for major functions and modules.
+This project serves as an excellent demonstration of **front-end development skills**, including layout techniques, DOM manipulation, event handling, and user-centered design.
 
 ---
 
-## Technical Requirements
+## 📌 Features (Detailed)
 
-- Use **HTML, CSS (or Tailwind), and JavaScript**.
-- No page reloads: Use JavaScript to handle modal behaviour and data rendering.
-- Ensure all UI states (modal open/close, hover effects, etc.) work smoothly.
-- Ensure all data is displayed in a **readable and accessible format**.
-
----
-
-## Design & UX Goals
-
-- Visually appealing UI with clear layout and hierarchy.
-- Use a consistent **colour scheme, typography, spacing, and sizing**.
-- Accessibility considerations (contrast, font readability, responsive buttons).
-- App should be fully **responsive** on desktop, tablet, and mobile.
-
-Make sure to dive into the wireframe reference images folder for guidance on how to build the UI structure. Note that the UI wireframes for both Desktop and Mobile are included.  
-
-![alt text](<wireframe reference images/desktop view/desktop_modal_view.png>)
+### 🎨 Podcast Cards
+- Display podcasts in a **clean grid layout**.
+- Each card includes:
+  - Cover image
+  - Podcast title
+  - Number of seasons (with pluralization handled automatically)
+  - Last updated information (human-readable format like *"2 weeks ago"*)
+  - Genre tags for quick identification
+- Fully clickable and keyboard accessible (`Enter` to open modal).
 
 ---
 
-## Deliverables
+### 🔍 Filtering & Sorting
+- **Filter by Genre**  
+  - Dropdown menu lists all available genres from the dataset.  
+  - Instantly narrows down the visible podcasts.  
 
-- A fully functional, responsive podcast preview web application.
-- Clean, well-commented source code (HTML, CSS, JS).
+- **Sort Options**  
+  - **Recently Updated (default):** Shows the freshest content first.  
+  - **Alphabetical (A–Z):** Organizes by title for quick lookup.  
+  - **By Seasons:** Prioritizes longer-running shows.  
+
+- Updates happen dynamically without page reloads.  
+
+---
+
+### 🪟 Podcast Modal (Details View)
+- Opens when a card is clicked or focused + Enter pressed.
+- Contains:
+  - Large podcast cover image
+  - Title & description
+  - Genre tags styled as pills
+  - Last updated information
+  - **Seasons list** with episode counts
+- If no seasons are available, the modal gracefully informs the user.
+- Modal can be dismissed by:
+  - Clicking the close button
+  - Clicking the overlay background
+  - Pressing the `Esc` key
+
+---
+
+### 📱 Responsive Design
+- **Desktop:** Grid supports up to 8 podcasts per row with two rows visible.
+- **Tablet:** Grid adapts to 2–4 cards per row.
+- **Mobile:** Grid collapses into 1–2 cards per row for readability.
+- Modal scales fluidly to fit smaller screens.
+
+---
+
+### ♿ Accessibility
+- All interactive elements are keyboard-focusable.
+- Cards have `role="button"` and respond to `Enter`.
+- Modal uses `aria-hidden` toggling for screen readers.
+- Escape key support ensures accessible closing behavior.
+- Semantic tags (`<article>`, `<header>`, `<section>`) improve structure.
+
+---
+
+### ⚡ Performance
+- Data-driven rendering: cards and filters are generated from `data.js`, not hard-coded.
+- DOM updates are efficient (`innerHTML` batch updates).
+- No external dependencies beyond icons (Font Awesome).
+
+---
+
+## 🗂️ Project Structure
+
+```plaintext
+PodcastExplorer/
+│
+├── index.html      # Main HTML template
+├── styles.css      # Stylesheet for layout, grid, modal, and responsiveness
+├── data.js         # Dataset with podcasts, genres, and seasons
+├── app.js          # Core application logic (rendering, filtering, sorting, modal handling)
+└── README.md       # Documentation
