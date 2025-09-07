@@ -351,3 +351,33 @@ header {
         grid-template-columns: repeat(2, 1fr);
     }
 }
+
+@media (max-width: 768px) {
+    .modal-header {
+        flex-direction: column;
+    }
+    
+    .modal-image {
+        flex: 0 0 auto;
+        margin-bottom: 20px;
+    }
+    
+    .filters {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 600px) {
+    .podcasts-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .modal-content {
+        padding: 20px;
+    }
+    
+    .modal-title {
+        font-size: 1.5rem;
+    }
+}
