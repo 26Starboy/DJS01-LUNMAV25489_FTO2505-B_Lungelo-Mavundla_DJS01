@@ -156,3 +156,31 @@ function filterAndSortPodcasts() {
     
     renderPodcasts(filteredPodcasts);
 }
+
+/**
+ * Initialize the application
+ */
+function init() {
+    // Populate genre filter
+    genres.forEach(genre => {
+        const option = document.createElement('option');
+        option.value = genre.id;
+        option.textContent = genre.title;
+        genreFilter.appendChild(option);
+    });
+    
+    // Render initial podcasts
+    renderPodcasts(podcasts);
+    
+    // Add event listeners
+    modalClose.addEventListener('click', closeModal);
+    modalOverlay.addEventListener('click', (e) => {
+        if (e.target === modalOverlay) closeModal();
+    });
+    
+    genreFilter.addEventListener('change', filterAndSortPodcasts);
+    sortFilter.addEventListener('change', filterAndSortPodcasts);
+}
+
+// Start the app when DOM is loaded
+document.addEventListener('DOMContentLoaded', init);
