@@ -1,55 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PodcastApp</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PodcastApp</title>
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <header>
-        <div class="logo">
-            <i class="fas fa-podcast"></i>Podcast App
-        </div>
-        <div class="tagline">Discover your next favorite podcast</div>
-    </header>
+  <header class="topbar">
+    <div class="topbar-inner container-wide">
+      <div class="brand">
+        <i class="fas fa-podcast"></i>
+        <span class="brand-text">PodcastApp</span>
+      </div>
 
-    <div class="container">
-        <div class="filters">
-            <div class="filter-group">
-                <span class="filter-label">Filter by:</span>
-                <select id="genreFilter" class="filter-select" aria-label="Filter by genre">
-                    <option value="all">All Genres</option>
-                </select>
-                       </div>
-            <div class="filter-group">
-                <span class="filter-label">Sort by:</span>
-                <select id="sortFilter" class="filter-select" aria-label="Sort podcasts">
-                    <option value="updated">Recently Updated</option>
-                    <option value="title">Title</option>
-                    <option value="seasons">Number of Seasons</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="podcasts-grid" id="podcastsGrid">
-            <!-- Podcast cards will be rendered here -->
-        </div>
+      <div class="topbar-actions">
+        <button class="icon-btn" aria-label="Search"><i class="fas fa-search"></i></button>
+        <button class="icon-btn" aria-label="Profile"><img src="https://i.pravatar.cc/32?img=12" alt="profile" class="avatar"></button>
+      </div>
     </div>
+  </header>
 
-     <div class="modal-overlay" id="modalOverlay">
-        <div class="modal">
-            <button class="modal-close" id="modalClose" type="button" title="Close modal" aria-label="Close modal">
-                <i class="fas fa-times"></i>
-            </button>
-            <div class="modal-content" id="modalContent">
-                <!-- Modal content will be rendered here -->
-            </div>
+  <main class="container-wide">
+    <section class="controls-row">
+      <div class="filters">
+        <div class="filter-label">Filter by:</div>
+        <div class="filter-pill">
+          <select id="genreFilter" class="filter-select" aria-label="Filter by genre">
+            <option value="all">All Genres</option>
+          </select>
         </div>
-    </div>
 
-    <script src="data.js"></script>
-    <script src="app.js"></script>
+        <div class="filter-pill">
+          <select id="sortFilter" class="filter-select" aria-label="Sort podcasts">
+            <option value="updated">Recently Updated</option>
+            <option value="title">Title</option>
+            <option value="seasons">Number of Seasons</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <section class="podcasts-area">
+      <div class="podcasts-grid" id="podcastsGrid" aria-live="polite">
+        <!-- Cards injected here -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="modalOverlay" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal" role="document">
+      <button class="modal-close" id="modalClose" type="button" title="Close modal" aria-label="Close modal">
+        <i class="fas fa-times"></i>
+      </button>
+      <div class="modal-content" id="modalContent"></div>
+    </div>
+  </div>
+
+  <!-- Data and App -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
