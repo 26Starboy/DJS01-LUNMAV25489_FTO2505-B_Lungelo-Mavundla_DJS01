@@ -35,3 +35,42 @@ function getGenreNames(genreIds) {
     });
 }
 
+/**
+ * Render podcast cards in the grid
+ * @param {Object[]} podcastsToRender - Array of podcast objects
+ */
+function renderPodcasts(podcastsToRender) {
+    podcastsGrid.innerHTML = '';
+    
+    podcastsToRender.forEach(podcast => {
+        const genreNames = getGenreNames(podcast.genres);
+        const updatedText = formatDate(podcast.updated);
+        
+        const card = document.createElement('div');
+        card.className = 'podcast-card';
+        card.innerHTML = `
+            <div class="card-image">
+                <img src="${podcast.image}" alt="${podcast.title}">
+            </div>
+            <div class="card-content">
+                <h3 class="card-title">${podcast.title}</h3>
+                <div class="card-details">
+                    <div class="card-detail">
+                        <i class="fas fa-list-ol"></i>
+                        <span>${podcast.seasons} season${podcast.seasons !== 1 ? 's' : ''}</span>
+                    </div>
+                    <div class="card-detail">
+                        <i class="fas fa-clock"></i>
+                        <span>${updatedText}</span>
+                    </div>
+                </div>
+                <div class="genre-tags">
+                    ${genreNames.map(genre => `<span class="genre-tag">${genre}</span>`).join('')}
+                </div>
+            </div>
+        `;
+        
+        card.addEventListener('click', () => openModal(podcast));
+        podcastsGrid.appendChild(card);
+    });
+}
