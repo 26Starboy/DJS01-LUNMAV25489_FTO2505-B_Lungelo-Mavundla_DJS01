@@ -1,94 +1,106 @@
+/* ==================== Root variables ==================== */
 :root{
-  --primary:#8c54ff;
-  --muted:#6c757d;
-  --bg:#f8f9fa;
-  --card:#fff;
-  --text:#212529;
-  --radius:10px;
-  --shadow: 0 6px 18px rgba(16,24,40,0.06);
-  --glass: 0 2px 6px rgba(16,24,40,0.04);
-  --transition: all .18s ease;
-  --container:1200px;
-  --gap:20px;
-  --pill-bg: #ffffff;
+  --primary:#8c54ff; /* Main purple color used for highlights and icons */
+  --muted:#6c757d; /* Muted gray color for secondary text */
+  --bg:#f8f9fa; /* Page background color */
+  --card:#fff; /* Card background color (white) */
+  --text:#212529; /* Primary text color */
+  --radius:10px; /* Default border-radius for rounded corners */
+  --shadow: 0 6px 18px rgba(16,24,40,0.06); /* Card shadow */
+  --glass: 0 2px 6px rgba(16,24,40,0.04); /* Lighter shadow for glass effect */
+  --transition: all .18s ease; /* Smooth transition for hover effects */
+  --container:1200px; /* Max width for containers */
+  --gap:20px; /* Default spacing/gap between elements */
+  --pill-bg: #ffffff; /* Background for pill-style filter elements */
 }
 
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%}
+/* ==================== Global styles ==================== */
+*{box-sizing:border-box;margin:0;padding:0} /* Universal reset for box-sizing and spacing */
+html,body{height:100%} /* Ensure body and html take full height */
 body{
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-  line-height:1.4;
-  padding-bottom:40px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; /* Font stack */
+  background:var(--bg); /* Background color */
+  color:var(--text); /* Text color */
+  -webkit-font-smoothing:antialiased; /* Smooth font for WebKit browsers */
+  -moz-osx-font-smoothing:grayscale; /* Smooth font for Firefox on macOS */
+  line-height:1.4; /* Default line height */
+  padding-bottom:40px; /* Bottom padding to prevent content cutoff */
 }
 
-/* Container width helper */
+/* ==================== Container helper ==================== */
 .container-wide{
-  max-width:var(--container);
-  margin:0 auto;
-  padding:24px;
+  max-width:var(--container); /* Maximum width of container */
+  margin:0 auto; /* Center container horizontally */
+  padding:24px; /* Inner padding */
 }
 
-/* Topbar */
+/* ==================== Topbar ==================== */
 .topbar{
-  background:var(--card);
-  border-bottom:1px solid rgba(0,0,0,0.04);
-  box-shadow: var(--glass);
-  position:sticky;
-  top:0;
-  z-index:50;
+  background:var(--card); /* White background */
+  border-bottom:1px solid rgba(0,0,0,0.04); /* Thin border at bottom */
+  box-shadow: var(--glass); /* Light shadow effect */
+  position:sticky; /* Sticks to top when scrolling */
+  top:0; /* Position from top */
+  z-index:50; /* High stacking order */
 }
 .topbar-inner{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:16px;
+  display:flex; /* Flex layout */
+  align-items:center; /* Vertically center items */
+  justify-content:space-between; /* Space between brand and actions */
+  gap:16px; /* Gap between items */
 }
 .brand{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  font-weight:600;
-  color:var(--text);
+  display:flex; /* Flex container for logo and text */
+  align-items:center; /* Vertically align icon and text */
+  gap:12px; /* Space between icon and text */
+  font-weight:600; /* Semi-bold text */
+  color:var(--text); /* Text color */
 }
-.brand i{font-size:20px;color:var(--primary)}
-.brand-text{font-size:1.05rem}
+.brand i{font-size:20px;color:var(--primary)} /* Icon size and color */
+.brand-text{font-size:1.05rem} /* Brand text size */
 
-/* Topbar actions */
-.topbar-actions{display:flex;gap:8px;align-items:center}
+/* ==================== Topbar actions ==================== */
+.topbar-actions{display:flex;gap:8px;align-items:center} /* Container for action buttons */
 .icon-btn{
-  background:transparent;border:1px solid transparent;padding:8px;border-radius:8px;cursor:pointer;
-  display:inline-flex;align-items:center;justify-content:center;font-size:16px;
+  background:transparent; /* Transparent button background */
+  border:1px solid transparent; /* Invisible border for alignment */
+  padding:8px; /* Inner padding */
+  border-radius:8px; /* Rounded corners */
+  cursor:pointer; /* Pointer cursor on hover */
+  display:inline-flex; /* Flex for centering icon */
+  align-items:center;
+  justify-content:center;
+  font-size:16px; /* Icon size */
 }
-.icon-btn:hover{background:rgba(0,0,0,0.03)}
-.avatar{width:28px;height:28px;border-radius:50%}
+.icon-btn:hover{background:rgba(0,0,0,0.03)} /* Light hover effect */
+.avatar{width:28px;height:28px;border-radius:50%} /* Profile image size and round shape */
 
-/* Controls / Filters row */
-.controls-row{padding:18px 24px 6px}
+/* ==================== Controls / Filters row ==================== */
+.controls-row{padding:18px 24px 6px} /* Padding for filters section */
 .filters{
   display:flex;
   align-items:center;
   gap:12px;
-  flex-wrap:wrap;
+  flex-wrap:wrap; /* Wrap filters on small screens */
 }
 .filter-label{
-  font-size:0.95rem;color:var(--muted);font-weight:600;margin-right:6px;
+  font-size:0.95rem;
+  color:var(--muted); /* Muted label color */
+  font-weight:600;
+  margin-right:6px; /* Small spacing after label */
 }
 
-/* Pill style for selects to match screenshot */
+/* Pill style for selects */
 .filter-pill{
-  background:var(--pill-bg);
-  border-radius:999px;
-  box-shadow: var(--glass);
+  background:var(--pill-bg); /* White background */
+  border-radius:999px; /* Fully rounded pill shape */
+  box-shadow: var(--glass); /* Subtle shadow */
   padding:6px;
   display:inline-flex;
   align-items:center;
 }
 .filter-select{
-  appearance:none;
+  appearance:none; /* Remove default select styling */
   -webkit-appearance:none;
   border:0;
   background:transparent;
@@ -96,57 +108,57 @@ body{
   font-size:0.95rem;
   color:var(--text);
   cursor:pointer;
-  border-radius:999px;
-  min-width:170px;
+  border-radius:999px; /* Match pill shape */
+  min-width:170px; /* Minimum width */
 }
-.filter-pill:focus-within{box-shadow:0 6px 20px rgba(140,84,255,0.08)}
+.filter-pill:focus-within{box-shadow:0 6px 20px rgba(140,84,255,0.08)} /* Highlight on focus */
 
-/* Podcasts grid */
-.podcasts-area{padding:8px 24px 48px}
+/* ==================== Podcasts grid ==================== */
+.podcasts-area{padding:8px 24px 48px} /* Padding around grid */
 .podcasts-grid{
   display:grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap:20px;
+  grid-template-columns: repeat(4, 1fr); /* 4 columns layout */
+  gap:20px; /* Gap between cards */
 }
 
-/* Card */
+/* ==================== Podcast Card ==================== */
 .podcast-card{
   background:var(--card);
   border-radius:12px;
   overflow:hidden;
   box-shadow: var(--shadow);
-  transition: var(--transition);
-  cursor:pointer;
+  transition: var(--transition); /* Smooth hover transitions */
+  cursor:pointer; /* Pointer on hover */
   display:flex;
   flex-direction:column;
-  height:100%;
+  height:100%; /* Full height of grid item */
 }
-.podcast-card:hover{transform:translateY(-6px);box-shadow: 0 12px 30px rgba(16,24,40,0.08)}
+.podcast-card:hover{transform:translateY(-6px);box-shadow: 0 12px 30px rgba(16,24,40,0.08)} /* Hover lift effect */
 
 .card-image{
-  background:#e6e9ee;
-  min-height:140px;
+  background:#e6e9ee; /* Placeholder background */
+  min-height:140px; /* Minimum height */
   display:flex;
   align-items:center;
   justify-content:center;
   overflow:hidden;
-  border-bottom:1px solid rgba(0,0,0,0.04);
+  border-bottom:1px solid rgba(0,0,0,0.04); /* Separator */
 }
 .card-image img{
   width:100%;
   height:160px;
-  object-fit:cover;
+  object-fit:cover; /* Crop image to fit */
   display:block;
   transition: var(--transition);
 }
-.podcast-card:hover .card-image img{transform:scale(1.03)}
+.podcast-card:hover .card-image img{transform:scale(1.03)} /* Slight zoom on hover */
 
 .card-content{
   padding:16px;
   display:flex;
   flex-direction:column;
   gap:8px;
-  flex:1 1 auto;
+  flex:1 1 auto; /* Fill available space */
 }
 
 /* Title and details */
@@ -162,7 +174,7 @@ body{
   color:var(--muted);
   font-size:0.9rem;
 }
-.card-detail i{color:var(--primary);font-size:0.9rem;margin-right:6px}
+.card-detail i{color:var(--primary);font-size:0.9rem;margin-right:6px} /* Icon color for details */
 
 /* Genre tags */
 .genre-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
@@ -179,27 +191,27 @@ body{
 .card-updated{
   color:var(--muted);
   font-size:0.85rem;
-  margin-top:auto;
+  margin-top:auto; /* Push to bottom */
 }
 
-/* Modal */
+/* ==================== Modal ==================== */
 .modal-overlay{
   position:fixed;inset:0;display:flex;align-items:center;justify-content:center;
   background:rgba(0,0,0,0.55);padding:20px;z-index:9999;
-  opacity:0;visibility:hidden;transition:var(--transition);
+  opacity:0;visibility:hidden;transition:var(--transition); /* Hidden by default */
 }
-.modal-overlay.active{opacity:1;visibility:visible}
+.modal-overlay.active{opacity:1;visibility:visible} /* Show overlay when active */
 .modal{
   width:100%;max-width:860px;background:var(--card);border-radius:12px;box-shadow:var(--shadow);
   max-height:92vh;overflow:auto;position:relative;transform:translateY(30px);transition:var(--transition);
 }
-.modal-overlay.active .modal{transform:translateY(0)}
+.modal-overlay.active .modal{transform:translateY(0)} /* Slide-up effect when active */
 .modal-content{padding:28px}
 .modal-close{
   position:absolute;right:16px;top:16px;width:40px;height:40px;border-radius:10px;border:0;background:transparent;cursor:pointer;
   font-size:16px;color:var(--muted);
 }
-.modal-close:hover{color:var(--primary);transform:rotate(90deg)}
+.modal-close:hover{color:var(--primary);transform:rotate(90deg)} /* Hover effect for close button */
 
 .modal-header{display:flex;gap:20px;align-items:flex-start;margin-bottom:14px}
 .modal-image{flex:0 0 200px;border-radius:12px;overflow:hidden;background:#eef0f4}
@@ -210,23 +222,24 @@ body{
 .modal-genres{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
 .modal-genre{background: rgba(140,84,255,0.08);color:var(--primary);padding:6px 10px;border-radius:999px;font-weight:600;font-size:0.85rem}
 
+/* Seasons section inside modal */
 .seasons-section{margin-top:18px}
 .seasons-title{font-size:1.05rem;margin-bottom:12px;color:var(--text);font-weight:700}
 .season-item{display:flex;justify-content:space-between;padding:10px 12px;border-radius:8px;margin-bottom:8px;background:rgba(0,0,0,0.02)}
 .season-name{font-weight:600}
 .episode-count{color:var(--muted);font-size:0.9rem}
 
-/* Responsive */
+/* ==================== Responsive layout ==================== */
 @media (max-width:1200px){
-  .podcasts-grid{grid-template-columns:repeat(3,1fr)}
+  .podcasts-grid{grid-template-columns:repeat(3,1fr)} /* 3 columns on smaller screens */
 }
 @media (max-width:980px){
-  .podcasts-grid{grid-template-columns:repeat(2,1fr)}
+  .podcasts-grid{grid-template-columns:repeat(2,1fr)} /* 2 columns */
 }
 @media (max-width:640px){
-  .podcasts-grid{grid-template-columns:1fr}
-  .modal-header{flex-direction:column}
-  .modal-image{width:100%}
-  .filter-select{min-width:140px}
-  .controls-row{padding:12px}
+  .podcasts-grid{grid-template-columns:1fr} /* 1 column for mobile */
+  .modal-header{flex-direction:column} /* Stack modal content vertically */
+  .modal-image{width:100%} /* Full width modal image */
+  .filter-select{min-width:140px} /* Smaller filter dropdowns */
+  .controls-row{padding:12px} /* Reduce padding on mobile */
 }
